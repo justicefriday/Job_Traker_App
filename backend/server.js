@@ -2,6 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv'; 
 import cors from 'cors';
 import connectDB from './config/db.js'; 
+import authRoutes from './routes/authRoutes.js';
+import jobRoutes from './routes/jobRoutes.js';
 
 dotenv.config();
 
@@ -14,6 +16,14 @@ app.use(cors());
 
 // Connect to MongoDB
 await connectDB();
+
+
+// Routes
+app.use('/api/auth', authRoutes);
+
+app.use('/api/jobs', jobRoutes);
+
+
 // Test route
 app.get('/', (req, res) => {
   res.send('Job Tracker API is running...');
