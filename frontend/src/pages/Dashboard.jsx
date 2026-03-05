@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useJobStore } from '../store/jobStore';
 import { FaMapMarkerAlt, FaBriefcase, FaDollarSign } from 'react-icons/fa';
@@ -7,6 +7,9 @@ import { toast } from 'react-toastify';
 const Dashboard = () => {
   const { jobs, getJobs, deleteJob, loading } = useJobStore();
   const navigate = useNavigate();
+
+  // Filter state
+  const [statusFilter, setStatusFilter] = useState('all');
 
   useEffect(() => {
     getJobs();
@@ -23,11 +26,61 @@ const Dashboard = () => {
     }
   };
 
+  // Filter jobs by status only
+  const filteredJobs = jobs.filter((job) => {
+    return statusFilter === 'all' || job.status === statusFilter;
+  });
+
+  // Calculate stats
+  const stats = {
+    total: jobs.length,
+    applied: jobs.filter((j) => j.status === 'applied').length,
+    interview: jobs.filter((j) => j.status === 'interview').length,
+    offer: jobs.filter((j) => j.status === 'offer').length,
+    rejected: jobs.filter((j) => j.status === 'rejected').length,
+  };
+
   return (
     <div className="dashboard">
       <div className="dashboard-content">
-        <div className="dashboard-header-section">
-          <h2>Your Job Applications</h2>
+        {/* Stats Cards */}
+        <div className="stats-grid mb-4">
+          <div className="stat-card stat-total">
+            <h3>{stats.total}</h3>
+            <p>Total Applications</p>
+          </div>
+          <div className="stat-card stat-applied">
+            <h3>{stats.applied}</h3>
+            <p>Applied</p>
+          </div>
+          <div className="stat-card stat-interview">
+            <h3>{stats.interview}</h3>
+            <p>Interviews</p>
+          </div>
+          <div className="stat-card stat-offer">
+            <h3>{stats.offer}</h3>
+            <p>Offers</p>
+          </div>
+          <div className="stat-card stat-rejected">
+            <h3>{stats.rejected}</h3>
+            <p>Rejected</p>
+          </div>
+        </div>
+
+        {/* Filter and Add Button */}
+        <div className="dashboard-controls">
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="status-filter"
+          >
+            <option value="all">All Status</option>
+            <option value="applied">Applied</option>
+            <option value="interview">Interview</option>
+            <option value="offer">Offer</option>
+            <option value="rejected">Rejected</option>
+          </select>
+
           <button
             onClick={() => navigate('/jobs/add')}
             className="btn-primary"
@@ -36,22 +89,36 @@ const Dashboard = () => {
           </button>
         </div>
 
+        {/* Jobs List */}
         <div className="jobs-list">
+          <h3>
+            Your Applications ({filteredJobs.length}
+            {filteredJobs.length !== jobs.length && ` of ${jobs.length}`})
+          </h3>
           {loading ? (
-            <p>Loading...</p>
-          ) : jobs.length === 0 ? (
+            <div className="loading-spinner">
+              <div className="spinner"></div>
+              <p>Loading...</p>
+            </div>
+          ) : filteredJobs.length === 0 ? (
             <div className="no-jobs">
-              <p>No jobs yet. Add your first application!</p>
-              <button
-                onClick={() => navigate('/jobs/add')}
-                className="btn-primary"
-              >
-                Add Job
-              </button>
+              <p>
+                {jobs.length === 0
+                  ? 'No jobs yet. Add your first application!'
+                  : 'No jobs match this status.'}
+              </p>
+              {jobs.length === 0 && (
+                <button
+                  onClick={() => navigate('/jobs/add')}
+                  className="btn-primary"
+                >
+                  Add Job
+                </button>
+              )}
             </div>
           ) : (
             <div className="jobs-grid">
-              {jobs.map((job) => (
+              {filteredJobs.map((job) => (
                 <div key={job._id} className="job-card">
                   <div className="job-header">
                     <h4>{job.position}</h4>
@@ -74,6 +141,13 @@ const Dashboard = () => {
                       {job.salary}
                     </p>
                   )}
+                  <p className="job-date">
+                    Applied {new Date(job.applicationDate).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
+                  </p>
                   {job.notes && <p className="job-notes">{job.notes}</p>}
                   <div className="job-actions">
                     <button
