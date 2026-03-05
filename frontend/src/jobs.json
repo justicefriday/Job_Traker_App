@@ -1,0 +1,88 @@
+{
+  "jobs": [
+    {
+      "type": "Full-Time",
+      "title": "Backend Developer",
+      "description": "Join our team as a Backend Developer to build scalable server-side applications using Node.js and Express. Collaborate with frontend developers and QA engineers to deliver high-quality software.",
+      "salary": "$80,000 - $100,000",
+      "location": "Remote",
+      "companyName": "TechNova",
+      "companyDescription": "TechNova is a leading tech company delivering innovative software solutions.",
+      "contactEmail": "hr@technova.com",
+      "contactPhone": "555-0001",
+      "id": "8b5f"
+    },
+    {
+      "type": "Full-Time",
+      "title": "Frontend Developer",
+      "description": "We are seeking a Frontend Developer skilled in React, TypeScript, and Tailwind CSS to create interactive and responsive web interfaces.",
+      "salary": "$85,000 - $105,000",
+      "location": "New York, NY",
+      "companyName": "CodeCrafters",
+      "companyDescription": "CodeCrafters is a software development firm specializing in frontend and backend solutions.",
+      "contactEmail": "careers@codecrafters.io",
+      "contactPhone": "555-0002",
+      "id": "a19e"
+    },
+    {
+      "type": "Contract",
+      "title": "DevOps Engineer",
+      "description": "Looking for a DevOps Engineer with expertise in AWS, Docker, and CI/CD pipelines to optimize deployments and infrastructure reliability.",
+      "salary": "$60/hr",
+      "location": "Remote",
+      "companyName": "CloudNet",
+      "companyDescription": "CloudNet offers cloud infrastructure and DevOps solutions for enterprise clients.",
+      "contactEmail": "devops@cloudnet.dev",
+      "contactPhone": "555-0004",
+      "id": "fabe"
+    },
+    {
+      "type": "Full-Time",
+      "title": "Digital Marketer",
+      "description": "BrightWave is hiring a Digital Marketer to manage SEO, PPC, content strategy, and social media campaigns to boost brand engagement.",
+      "salary": "$60,000 - $75,000",
+      "location": "Chicago, IL",
+      "companyName": "BrightWave",
+      "companyDescription": "BrightWave is a fast-growing agency focused on digital marketing and branding solutions.",
+      "contactEmail": "apply@brightwave.agency",
+      "contactPhone": "555-0005",
+      "id": "8053"
+    },
+    {
+      "type": "Full-Time",
+      "title": "Data Scientist",
+      "description": "Analyze large datasets to provide insights, build predictive models, and work with business stakeholders to support data-driven decisions.",
+      "salary": "$110,000 - $130,000",
+      "location": "San Francisco, CA",
+      "companyName": "DataMinds",
+      "companyDescription": "DataMinds specializes in advanced analytics and machine learning solutions for businesses.",
+      "contactEmail": "hr@dataminds.ai",
+      "contactPhone": "555-0006",
+      "id": "df1b"
+    },
+    {
+      "type": "Full-Time",
+      "title": "Project Manager",
+      "description": "Manage software development projects, coordinate cross-functional teams, ensure timely delivery, and maintain project documentation.",
+      "salary": "$90,000 - $110,000",
+      "location": "Boston, MA",
+      "companyName": "TechNova",
+      "companyDescription": "TechNova is a leading tech company delivering innovative software solutions.",
+      "contactEmail": "pm@technova.com",
+      "contactPhone": "555-0007",
+      "id": "eeca"
+    },
+    {
+      "type": "Full-Time",
+      "title": "Mobile App Developer",
+      "description": "Develop iOS and Android applications using Flutter or React Native, collaborating with UX/UI designers and backend engineers.",
+      "salary": "$95,000 - $115,000",
+      "location": "Austin, TX",
+      "companyName": "AppWorks",
+      "companyDescription": "AppWorks develops innovative mobile applications for businesses and consumers.",
+      "contactEmail": "jobs@appworks.io",
+      "contactPhone": "555-0008",
+      "id": "965d"
+    }
+  ]
+}

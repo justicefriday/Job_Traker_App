@@ -2,13 +2,12 @@ import User from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 
-
 // Generate JWT token
 const generateToken = (id) => {
-  console.log('JWT_SECRET:', process.env.JWT_SECRET); // debug
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
 };
-
 
 // @desc    Register new user
 // @route   POST /api/auth/register
@@ -31,20 +30,18 @@ export const registerUser = asyncHandler(async (req, res) => {
     password,
   });
 
-  if (!user) {
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else {
     res.status(400);
     throw new Error('Invalid user data');
   }
-
-  res.status(201).json({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    token: generateToken(user._id),
-  });
-    
 });
-
 
 // @desc    Login user
 // @route   POST /api/auth/login
@@ -52,17 +49,19 @@ export const registerUser = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
+  // Find user by email
   const user = await User.findOne({ email });
 
-  if (!user || !(await user.matchPassword(password))) {
+  // Check if user exists and password matches
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user._id),
+    });
+  } else {
     res.status(401);
     throw new Error('Invalid email or password');
   }
-
-  res.status(200).json({
-    _id: user._id,
-    name: user.name,
-    email: user.email,
-    token: generateToken(user._id),
-  });
 });

@@ -1,56 +1,36 @@
-import asyncHandler from 'express-async-handler';
 import Job from '../models/jobModel.js';
+import asyncHandler from 'express-async-handler';
 
+// @desc    Get all jobs for logged-in user
+// @route   GET /api/jobs
+// @access  Private
+export const getJobs = asyncHandler(async (req, res) => {
+  const jobs = await Job.find({ user: req.user._id }).sort({ createdAt: -1 });
+  res.json(jobs);
+});
 
-// CREATE JOB
-// @desc    Create new job
+// @desc    Create a new job
 // @route   POST /api/jobs
 // @access  Private
 export const createJob = asyncHandler(async (req, res) => {
+  const { company, position, status, location, jobType, salary, applicationDate, notes } = req.body;
+
   const job = await Job.create({
-    ...req.body,
-    user: req.user.id,
+    user: req.user._id,
+    company,
+    position,
+    status,
+    location,
+    jobType,
+    salary,
+    applicationDate,
+    notes,
   });
 
   res.status(201).json(job);
 });
 
-
-// GET ALL JOBS
-// @desc    Get all jobs for the logged-in user
-// @route   GET /api/jobs
-// @access  Private
-export const getJobs = asyncHandler(async (req, res) => {
-  const jobs = await Job.find({ user: req.user.id })
-    .sort({ createdAt: -1 });
-
-  res.status(200).json(jobs);
-});
-
-
-// GET SINGLE JOB
-// @desc    Get single job by ID
-// @route   GET /api/jobs/:id
-// @access  Private
-export const getSingleJob = asyncHandler(async (req, res) => {
-  const job = await Job.findById(req.params.id);
-
-  if (!job) {
-    res.status(404);
-    throw new Error('Job not found');
-  }
-
-  if (job.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error('Not authorized');
-  }
-
-  res.status(200).json(job);
-});
-
-
-// UPDATE JOB
-// @desc    Update job by ID
+// @desc    Update a job
 // @route   PUT /api/jobs/:id
 // @access  Private
 export const updateJob = asyncHandler(async (req, res) => {
@@ -61,23 +41,20 @@ export const updateJob = asyncHandler(async (req, res) => {
     throw new Error('Job not found');
   }
 
-  if (job.user.toString() !== req.user.id) {
+  // Make sure user owns this job
+  if (job.user.toString() !== req.user._id.toString()) {
     res.status(401);
     throw new Error('Not authorized');
   }
 
-  const updatedJob = await Job.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true, runValidators: true }
-  );
+  const updatedJob = await Job.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
 
-  res.status(200).json(updatedJob);
+  res.json(updatedJob);
 });
 
-
-// DELETE JOB
-// @desc    Delete job by ID
+// @desc    Delete a job
 // @route   DELETE /api/jobs/:id
 // @access  Private
 export const deleteJob = asyncHandler(async (req, res) => {
@@ -88,12 +65,13 @@ export const deleteJob = asyncHandler(async (req, res) => {
     throw new Error('Job not found');
   }
 
-  if (job.user.toString() !== req.user.id) {
+  // Make sure user owns this job
+  if (job.user.toString() !== req.user._id.toString()) {
     res.status(401);
     throw new Error('Not authorized');
   }
 
-  await job.deleteOne();
+  await Job.findByIdAndDelete(req.params.id);
 
-  res.status(200).json({ message: 'Job deleted' });
+  res.json({ message: 'Job removed' });
 });
