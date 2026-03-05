@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: ['https://YOUR-VERCEL-URL.vercel.app', 'http://localhost:3000'],
+  origin: ['https://job-traker-app-udeb.vercel.app', 'http://localhost:3000'],
   credentials: true
 }));
 // Routes
