@@ -1,24 +1,24 @@
-#  Job Tracker Application
+# 📊 Job Tracker Application
 
 A full-stack MERN application for tracking job applications with authentication, CRUD operations, and real-time statistics.
 
 **Live Demo:** https://job-traker-app-udeb.vercel.app
 
-##  Overview
+## 🌟 Overview
 
 Job Tracker helps job seekers organize and manage their job applications in one place. Track application status, filter by progress, and visualize your job search journey.
 
-##  Key Features
+## ✨ Key Features
 
--  User authentication with JWT
--  Add, edit, and delete job applications
--  Dashboard with application statistics
--  Filter jobs by status (Applied, Interview, Offer, Rejected)
--  Responsive design for mobile and desktop
--  Modern UI with Bootstrap 5
--  Toast notifications for user feedback
+- 🔐 User authentication with JWT
+- ➕ Add, edit, and delete job applications
+- 📊 Dashboard with application statistics
+- 🔍 Filter jobs by status (Applied, Interview, Offer, Rejected)
+- 📱 Responsive design for mobile and desktop
+- 🎨 Modern UI with Bootstrap 5
+- 🔔 Toast notifications for user feedback
 
-##  Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 - React 18
@@ -112,9 +112,7 @@ Job_Traker_App/
 - `PUT /api/jobs/:id` - Update job
 - `DELETE /api/jobs/:id` - Delete job
 
-*See [Backend README](./backend/README.md) for detailed API documentation.*
-
-##  Deployment
+## 🌐 Deployment
 
 - **Frontend:** Deployed on [Vercel](https://vercel.com)
 - **Backend:** Deployed on [Render](https://render.com)
@@ -122,32 +120,39 @@ Job_Traker_App/
 
 **Live URLs:**
 - App: https://job-traker-app-udeb.vercel.app
-- API: https://job-traker-app.onrender.com
+- API: https://job-traker-app-backend.onrender.com
 
-
-
-##  Roadmap
+## 🎯 Roadmap
 
 - [x] User authentication
 - [x] Job CRUD operations
 - [x] Status filtering
 - [x] Statistics dashboard
-- [ ] filter functionality
+- [ ] Search functionality
 - [ ] Email notifications
 - [ ] Export to CSV
 - [ ] Calendar view
 
 ##  Author
 
-**Justice Friday**
+**Justice Friday Udo**
 - GitHub: [@justicefriday](https://github.com/justicefriday)
-- LinkedIn: [Your Profile](https://linkedin.com/in/yourprofile)
-- Portfolio: [Your Website](https://my-frontend-portfolio-6x59.vercel.app/)
+- LinkedIn: [linkedin.com/in/justice-friday](https://linkedin.com/in/justice-friday)
+- Portfolio: [my-frontend-portfolio-6x59.vercel.app](https://my-frontend-portfolio-6x59.vercel.app/)
 
 ##  Contributing
 
 Contributions, issues, and feature requests are welcome!
 
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the MIT License.
 
 ##  Acknowledgments
 
@@ -157,4 +162,4 @@ Contributions, issues, and feature requests are welcome!
 
 ---
 
-⭐ **If you found this project helpful, please give it a star!**
+⭐**If you found this project helpful, please give it a star!**
