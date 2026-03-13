@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/jobs';
-// const API_URL = 'https://job-traker-app.onrender.com/api/jobs';
+// const API_URL = 'http://localhost:5000/api/jobs';
+const API_URL = 'https://job-traker-app-backend.onrender.com/api/jobs';
 
 // This will bringin token fron user in the local storage
 const getToken = () => {
