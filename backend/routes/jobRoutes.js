@@ -6,13 +6,17 @@ import {
   deleteJob,
 } from '../controllers/jobController.js';
 import { protect } from '../middleware/authMiddleware.js';
+import { jobValidation, validate } from '../middleware/validationMiddleware.js';
 
 const router = express.Router();
 
 // All routes are protected (need to be logged in)
-router.get('/',protect,getJobs)
-router.post('/',protect, createJob);
-router.put('/:id',protect,updateJob)
-router.delete('/:id',protect, deleteJob);
+router.route('/')
+  .get(protect, getJobs)
+  .post(protect, jobValidation, validate, createJob);
+
+router.route('/:id')
+  .put(protect, jobValidation, validate, updateJob)
+  .delete(protect, deleteJob);
 
 export default router;

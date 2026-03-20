@@ -15,7 +15,7 @@ const generateToken = (id) => {
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
-  // Check if user already exists
+  // Check if user already exists,using the email is unique we check if that email is already in our data.
   const userExists = await User.findOne({ email });
 
   if (userExists) {

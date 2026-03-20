@@ -6,7 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import AddJob from './pages/AddJob';
 import EditJob from './pages/EditJob';
-import './App.css';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -46,6 +46,7 @@ function App() {
             }
           />
           <Route path="/" element={<Navigate to="/dashboard" />} />
+           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Router>
